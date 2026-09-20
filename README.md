@@ -30,6 +30,8 @@ Click **Start camera**. The first analysis run downloads the model from Google; 
 
 ## PyCharm
 
+A standalone [step-by-step HTML setup guide in Polish](docs/pycharm-setup-guide.html) is included for onboarding. Download it and open it in a browser to use the copy buttons and print layout.
+
 1. Open the `posture-line` project directory.
 2. Select the existing interpreter at `.venv/Scripts/python.exe` in **Settings → Project → Python Interpreter**. Re-select it if the project was moved or renamed.
 3. Install the project using the command above if needed.

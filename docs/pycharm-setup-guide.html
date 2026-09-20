@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Posture Line — instalacja i praca w PyCharmie</title>
+  <style>
+    :root { color-scheme: light; --ink:#172a3a; --muted:#526578; --accent:#12675e; --border:#dce5e9; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#eef3f5; color:var(--ink); font:16px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    main { max-width:940px; margin:40px auto; padding:48px 56px; background:white; border:1px solid var(--border); border-radius:20px; }
+    header { border-bottom:1px solid var(--border); padding-bottom:28px; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.13em; font-size:.78rem; font-weight:750; }
+    h1 { font-size:clamp(1.9rem,5vw,2.7rem); line-height:1.2; letter-spacing:-.035em; margin:12px 0; }
+    h2 { font-size:1.35rem; line-height:1.35; margin:0 0 16px; }
+    p { margin:12px 0; }
+    .lead, footer { color:var(--muted); }
+    a { color:var(--accent); text-underline-offset:3px; }
+    nav { background:#f4f8f9; border-radius:12px; padding:20px 24px; margin:28px 0; }
+    nav ol { margin:8px 0 0; padding-left:24px; columns:2; column-gap:32px; }
+    nav li { break-inside:avoid; padding:3px 0; }
+    section { padding-top:28px; margin-top:12px; border-top:1px solid var(--border); scroll-margin-top:24px; }
+    section ol { padding-left:24px; }
+    li { padding:4px 0; }
+    code { font-family:Consolas,"Courier New",monospace; font-size:.9em; overflow-wrap:anywhere; }
+    p code, li code, td code { background:#edf3f5; padding:2px 5px; border-radius:4px; }
+    .command { position:relative; margin:14px 0; }
+    pre { margin:0; padding:20px; padding-top:44px; overflow:auto; background:#122535; color:#eaf5fa; border-radius:10px; line-height:1.6; }
+    pre code { overflow-wrap:normal; }
+    button { font:inherit; cursor:pointer; border:1px solid var(--border); border-radius:7px; background:white; color:var(--ink); padding:7px 12px; }
+    button:hover { background:#eaf4f1; }
+    button:focus-visible { outline:3px solid #168879; outline-offset:3px; }
+    .copy { position:absolute; right:10px; top:9px; font-size:.75rem; padding:3px 9px; }
+    .note { background:#edf7f3; border-left:4px solid #209982; padding:14px 18px; margin:18px 0; border-radius:0 8px 8px 0; }
+    .table-wrap { overflow-x:auto; }
+    table { width:100%; border-collapse:collapse; margin:16px 0; }
+    th,td { padding:12px; text-align:left; border:1px solid var(--border); vertical-align:top; }
+    th { background:#f4f8f9; }
+    footer { margin-top:36px; padding-top:20px; border-top:1px solid var(--border); font-size:.85rem; }
+    .tools { display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-top:20px; }
+    #copy-status { font-size:.85rem; color:var(--muted); }
+    @media(max-width:640px) { main { margin:0; padding:28px 20px; border:0; border-radius:0; } nav ol { columns:1; } }
+    @media print { body { background:white; font-size:10pt; } main { max-width:none; margin:0; padding:0; border:0; } .tools,.copy { display:none; } nav { display:none; } pre { padding:12px; background:#f3f5f7; color:#172a3a; white-space:pre-wrap; overflow-wrap:anywhere; } section { break-inside:auto; } h2 { break-after:avoid; } pre,table,.note { break-inside:avoid; } a { color:inherit; } }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">Posture Line · Windows 10 / 11</div>
+    <h1>Od instalacji PyCharma<br>do pierwszego commita</h1>
+    <p class="lead">Instrukcja krok po kroku: zainstaluj narzędzia, pobierz repozytorium, uruchom aplikację i przygotuj własne zmiany.</p>
+    <p>Repozytorium: <a href="https://github.com/gkazanowski/posture-line">github.com/gkazanowski/posture-line</a></p>
+    <div class="tools"><button type="button" id="print-guide">Drukuj / zapisz jako PDF</button><span id="copy-status" role="status" aria-live="polite"></span></div>
+  </header>
+  <nav aria-label="Spis treści">
+    <strong>W tej instrukcji</strong>
+    <ol>
+      <li><a href="#pycharm">Zainstaluj PyCharma</a></li>
+      <li><a href="#python">Zainstaluj Pythona</a></li>
+      <li><a href="#git">Zainstaluj Git</a></li>
+      <li><a href="#clone">Pobierz repozytorium</a></li>
+      <li><a href="#environment">Przygotuj środowisko</a></li>
+      <li><a href="#interpreter">Ustaw interpreter</a></li>
+      <li><a href="#run">Uruchom aplikację</a></li>
+      <li><a href="#tests">Sprawdź testy</a></li>
+      <li><a href="#contribute">Pracuj nad zmianami</a></li>
+    </ol>
+  </nav>
+  <section id="pycharm">
+    <h2>1. Zainstaluj PyCharma</h2>
+    <ol>
+      <li>Otwórz <a href="https://www.jetbrains.com/pycharm/download/">stronę pobierania PyCharma</a>.</li>
+      <li>Pobierz instalator dla Windows i uruchom go.</li>
+      <li>Możesz pozostawić ustawienia domyślne. Opcja <strong>Open Folder as Project</strong> ułatwia otwieranie projektów z Eksploratora.</li>
+      <li>Dokończ instalację.</li>
+    </ol>
+    <p>PyCharm jest obecnie jednym produktem z bezpłatnymi podstawowymi funkcjami. Do tego projektu nie potrzebujesz płatnej subskrypcji. Po okresie próbnym Pro możesz nadal korzystać z funkcji bezpłatnych. <a href="https://www.jetbrains.com/help/pycharm/installation-guide.html">Dokumentacja instalacji</a>.</p>
+  </section>
+  <section id="python">
+    <h2>2. Zainstaluj Pythona 3.12</h2>
+    <p>Projekt wymaga Pythona <strong>3.10–3.12</strong>. Dla tej instrukcji wybierz <strong>Python 3.12, 64-bit</strong>.</p>
+    <ol>
+      <li>Otwórz <a href="https://www.python.org/downloads/release/python-31210/">stronę Pythona 3.12.10</a>.</li>
+      <li>W sekcji <strong>Files</strong> pobierz <strong>Windows installer (64-bit)</strong>.</li>
+      <li>Uruchom instalator i zaznacz <strong>Add python.exe to PATH</strong>.</li>
+      <li>Wybierz <strong>Install Now</strong>.</li>
+      <li>Otwórz PowerShell i sprawdź instalację:</li>
+    </ol>
+    <div class="command"><pre><code>py -3.12 --version</code></pre></div>
+    <p>Oczekiwany wynik: <code>Python 3.12.x</code>.</p>
+    <div class="note">Aktualna konfiguracja projektu nie obsługuje Pythona 3.13 ani nowszego. Wybierz wersję 3.12 również podczas konfiguracji PyCharma.</div>
+  </section>
+  <section id="git">
+    <h2>3. Zainstaluj Git</h2>
+    <ol>
+      <li>Pobierz instalator z <a href="https://git-scm.com/install/windows">oficjalnej strony Git dla Windows</a>.</li>
+      <li>Zainstaluj go z ustawieniami domyślnymi.</li>
+      <li>Otwórz nowe okno PowerShell i sprawdź:</li>
+    </ol>
+    <div class="command"><pre><code>git --version</code></pre></div>
+    <p>Jeżeli PyCharm był otwarty podczas instalacji Gita, uruchom go ponownie.</p>
+  </section>
+  <section id="clone">
+    <h2>4. Pobierz repozytorium w PyCharmie</h2>
+    <ol>
+      <li>Na ekranie powitalnym wybierz <strong>Clone Repository</strong> lub <strong>Get from VCS</strong>. Jeżeli masz otwarty projekt, poszukaj <strong>Git → Clone</strong>.</li>
+      <li>W polu <strong>URL</strong> wklej poniższy adres.</li>
+    </ol>
+    <div class="command"><pre><code>https://github.com/gkazanowski/posture-line.git</code></pre></div>
+    <p>W polu <strong>Directory</strong> wybierz folder na swoim komputerze, np. poniższy. Zastąp <code>TWOJ_LOGIN</code> swoją nazwą użytkownika Windows.</p>
+    <div class="command"><pre><code>C:\Users\TWOJ_LOGIN\PycharmProjects\posture-line</code></pre></div>
+    <p>Kliknij <strong>Clone</strong>, otwórz projekt i wybierz <strong>Trust Project</strong>, jeśli pojawi się pytanie o zaufanie do projektu.</p>
+    <p>Repozytorium jest publiczne, więc samo pobranie nie wymaga logowania do GitHuba. Nazwy przycisków mogą różnić się między wersjami PyCharma. <a href="https://www.jetbrains.com/help/pycharm/set-up-a-git-repository.html">Instrukcja klonowania</a>.</p>
+  </section>
+  <section id="environment">
+    <h2>5. Utwórz środowisko i zainstaluj biblioteki</h2>
+    <p>W PyCharmie otwórz zakładkę <strong>Terminal</strong> i użyj PowerShella. Upewnij się, że jesteś w folderze <code>posture-line</code>: polecenie <code>dir</code> powinno pokazać plik <code>pyproject.toml</code>.</p>
+    <p>Utwórz osobne środowisko Pythona dla projektu:</p>
+    <div class="command"><pre><code>py -3.12 -m venv .venv</code></pre></div>
+    <p>Następnie zainstaluj aplikację i jej zależności:</p>
+    <div class="command"><pre><code>.\.venv\Scripts\python.exe -m pip install -c requirements-lock.txt -e .</code></pre></div>
+    <div class="note">Końcowa kropka jest częścią polecenia. Jeśli PyCharm wcześniej utworzył już <code>.venv</code> z Pythonem 3.12, pomiń tworzenie środowiska i wykonaj tylko instalację bibliotek. Folder <code>.venv</code> nie jest pobierany z GitHuba — każdy tworzy go lokalnie.</div>
+  </section>
+  <section id="interpreter">
+    <h2>6. Dodaj interpreter do PyCharma</h2>
+    <ol>
+      <li>Naciśnij <strong>Ctrl+Alt+S</strong> i wyszukaj <strong>Python Interpreter</strong>. W nowszych wersjach znajdziesz go pod <strong>Python → Interpreter</strong>.</li>
+      <li>Wybierz <strong>Add Interpreter → Add Local Interpreter</strong>.</li>
+      <li>Wybierz istniejące środowisko: <strong>Existing environment</strong> lub typ <strong>Python</strong>, zależnie od wersji.</li>
+      <li>Kliknij ikonę przeglądania <strong>…</strong> lub folderu i wskaż plik poniżej, we własnym katalogu projektu.</li>
+    </ol>
+    <div class="command"><pre><code>FOLDER_TWOJEGO_PROJEKTU\.venv\Scripts\python.exe</code></pre></div>
+    <p>Zatwierdź przez <strong>OK / Apply</strong>. W tej ścieżce <code>FOLDER_TWOJEGO_PROJEKTU</code> oznacza pełną ścieżkę do sklonowanego katalogu <code>posture-line</code>.</p>
+    <div class="note">Jeśli właściwego interpretera nie ma na liście, dodaj go przez przeglądanie plików. Interpreter ze starszego projektu, np. <code>PyCharmMiscProject</code>, może nie mieć zainstalowanej naszej aplikacji.</div>
+    <p><a href="https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html">Dokumentacja konfiguracji interpretera</a>.</p>
+  </section>
+  <section id="run">
+    <h2>7. Uruchom aplikację</h2>
+    <p>W górnym pasku PyCharma wybierz konfigurację <strong>Posture Line</strong> i kliknij zielony przycisk <strong>Run</strong>.</p>
+    <p>Jeśli konfiguracji nie ma, otwórz <strong>Run → Edit Configurations… → + → Python</strong> i ustaw:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th scope="col">Pole</th><th scope="col">Wartość</th></tr></thead>
+      <tbody>
+        <tr><td>Name</td><td><code>Posture Line</code></td></tr>
+        <tr><td>Run / Module name</td><td><code>posture_line</code></td></tr>
+        <tr><td>Python interpreter</td><td>Interpreter z projektowego <code>.venv</code></td></tr>
+        <tr><td>Working directory</td><td>Pełna ścieżka do folderu <code>posture-line</code> na Twoim komputerze</td></tr>
+      </tbody>
+    </table></div>
+    <p>Wybierz uruchamianie <strong>modułu</strong>, nie pliku. Wpisz dokładnie <code>posture_line</code>, bez dodatkowych spacji i ukośników. Nie uruchamiaj <code>main.py</code> — to przykładowy plik PyCharma.</p>
+    <p>Alternatywnie uruchom aplikację z terminala projektu:</p>
+    <div class="command"><pre><code>.\.venv\Scripts\python.exe -m posture_line</code></pre></div>
+    <p>W oknie aplikacji kliknij <strong>Start camera</strong>. Przy pierwszym uruchomieniu zostanie pobrany model, więc potrzebny jest internet. Jeśli kamera jest zajęta, zamknij inne aplikacje korzystające z niej.</p>
+  </section>
+  <section id="tests">
+    <h2>8. Sprawdź testy</h2>
+    <p>W terminalu projektu uruchom:</p>
+    <div class="command"><pre><code>.\.venv\Scripts\python.exe -m unittest discover -s tests -v</code></pre></div>
+    <p>Wersja bazowa opisana w tej instrukcji zawiera <strong>9 testów</strong>. Poprawny wynik kończy się komunikatem <code>OK</code>. W kolejnych wersjach liczba testów może wzrosnąć.</p>
+  </section>
+  <section id="contribute">
+    <h2>9. Rozpocznij pracę nad zmianami</h2>
+    <p>Ustaw autora commitów dla tego repozytorium. Zastąp przykładowe dane własnymi:</p>
+    <div class="command"><pre><code>git config user.name "Your Name"
+git config user.email "your-email@example.com"</code></pre></div>
+    <p>Przed rozpoczęciem nowej pracy, przy czystym katalogu roboczym, pobierz aktualizacje i utwórz własną gałąź:</p>
+    <div class="command"><pre><code>git switch main
+git pull --ff-only
+git switch -c feature/my-first-change</code></pre></div>
+    <p>Wprowadź zmiany, uruchom testy z kroku 8, a następnie przygotuj commit i wyślij gałąź:</p>
+    <div class="command"><pre><code>git status
+git add src tests
+git commit -m "Improve posture visualization"
+git push -u origin feature/my-first-change</code></pre></div>
+    <p><code>git add src tests</code> dodaje zmiany z tych dwóch katalogów. Inne zmienione pliki, np. <code>README.md</code>, dodaj osobno. Dopasuj nazwę gałęzi i opis commita do swojej zmiany.</p>
+    <div class="note">Kod, nazwy plików i gałęzi, komunikaty commitów, komentarze oraz dokumentację projektu prowadzimy <strong>po angielsku</strong>. Ta instrukcja po polsku służy wdrożeniu użytkownika i jest osobnym materiałem.</div>
+    <p>Do wysyłania zmian bezpośrednio do <code>gkazanowski/posture-line</code> potrzebujesz uprawnień współpracownika i logowania do GitHuba. Po wysłaniu gałęzi utwórz na GitHubie <strong>Pull Request</strong> do <code>main</code>.</p>
+    <p>Osoba bez dostępu do zapisu może utworzyć na GitHubie <strong>fork</strong>, sklonować adres własnego forka zamiast adresu z kroku 4 i wysyłać gałęzie do niego. Następnie zgłasza Pull Request z forka do <code>gkazanowski/posture-line</code>.</p>
+  </section>
+  <footer>
+    Instrukcja przygotowana 20 września 2026 r. dla Windows i wersji bazowej projektu
+    <a href="https://github.com/gkazanowski/posture-line/commit/15b02e7da67ad88fac8edcc2fdedd6f92a34a505">15b02e7</a>.
+    Plik działa lokalnie bez zewnętrznych bibliotek. Internet jest potrzebny do otwierania odnośników, pobierania narzędzi, bibliotek i modelu.
+  </footer>
+</main>
+<script>
+  document.getElementById('print-guide').addEventListener('click', () => window.print());
+  document.querySelectorAll('.command').forEach((container) => {
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'copy';
+    button.textContent = 'Kopiuj';
+    button.setAttribute('aria-label', 'Kopiuj zawartość tego bloku');
+    button.addEventListener('click', async () => {
+      const code = container.querySelector('code');
+      const status = document.getElementById('copy-status');
+      try {
+        if (!navigator.clipboard) throw new Error('Clipboard unavailable');
+        await navigator.clipboard.writeText(code.textContent);
+        button.textContent = 'Skopiowano';
+        status.textContent = 'Skopiowano zawartość bloku do schowka.';
+        setTimeout(() => { button.textContent = 'Kopiuj'; }, 1800);
+      } catch (error) {
+        const selection = window.getSelection();
+        const range = document.createRange();
+        range.selectNodeContents(code);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        status.textContent = 'Tekst zaznaczony. Naciśnij Ctrl+C, aby go skopiować.';
+      }
+    });
+    container.appendChild(button);
+  });
+</script>
+</body>
+</html>
