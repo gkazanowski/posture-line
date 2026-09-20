@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="pl">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Posture Line — instalacja i praca w PyCharmie</title>
+  <title>Posture Line — PyCharm setup and contribution guide</title>
   <style>
     :root { color-scheme: light; --ink:#172a3a; --muted:#526578; --accent:#12675e; --border:#dce5e9; }
     * { box-sizing:border-box; }
@@ -47,166 +47,167 @@
 <main>
   <header>
     <div class="eyebrow">Posture Line · Windows 10 / 11</div>
-    <h1>Od instalacji PyCharma<br>do pierwszego commita</h1>
-    <p class="lead">Instrukcja krok po kroku: zainstaluj narzędzia, pobierz repozytorium, uruchom aplikację i przygotuj własne zmiany.</p>
-    <p>Repozytorium: <a href="https://github.com/gkazanowski/posture-line">github.com/gkazanowski/posture-line</a></p>
-    <div class="tools"><button type="button" id="print-guide">Drukuj / zapisz jako PDF</button><span id="copy-status" role="status" aria-live="polite"></span></div>
+    <h1>From installing PyCharm<br>to your first commit</h1>
+    <p class="lead">A step-by-step guide to installing the tools, cloning the repository, running the application, and contributing changes.</p>
+    <p>Repository: <a href="https://github.com/gkazanowski/posture-line">github.com/gkazanowski/posture-line</a></p>
+    <div class="tools"><button type="button" id="print-guide">Print / save as PDF</button><span id="copy-status" role="status" aria-live="polite"></span></div>
   </header>
-  <nav aria-label="Spis treści">
-    <strong>W tej instrukcji</strong>
+  <nav aria-label="Table of contents">
+    <strong>In this guide</strong>
     <ol>
-      <li><a href="#pycharm">Zainstaluj PyCharma</a></li>
-      <li><a href="#python">Zainstaluj Pythona</a></li>
-      <li><a href="#git">Zainstaluj Git</a></li>
-      <li><a href="#clone">Pobierz repozytorium</a></li>
-      <li><a href="#environment">Przygotuj środowisko</a></li>
-      <li><a href="#interpreter">Ustaw interpreter</a></li>
-      <li><a href="#run">Uruchom aplikację</a></li>
-      <li><a href="#tests">Sprawdź testy</a></li>
-      <li><a href="#contribute">Pracuj nad zmianami</a></li>
+      <li><a href="#pycharm">Install PyCharm</a></li>
+      <li><a href="#python">Install Python</a></li>
+      <li><a href="#git">Install Git</a></li>
+      <li><a href="#clone">Clone the repository</a></li>
+      <li><a href="#environment">Set up the environment</a></li>
+      <li><a href="#interpreter">Configure the interpreter</a></li>
+      <li><a href="#run">Run the application</a></li>
+      <li><a href="#tests">Run the tests</a></li>
+      <li><a href="#contribute">Contribute changes</a></li>
     </ol>
   </nav>
   <section id="pycharm">
-    <h2>1. Zainstaluj PyCharma</h2>
+    <h2>1. Install PyCharm</h2>
     <ol>
-      <li>Otwórz <a href="https://www.jetbrains.com/pycharm/download/">stronę pobierania PyCharma</a>.</li>
-      <li>Pobierz instalator dla Windows i uruchom go.</li>
-      <li>Możesz pozostawić ustawienia domyślne. Opcja <strong>Open Folder as Project</strong> ułatwia otwieranie projektów z Eksploratora.</li>
-      <li>Dokończ instalację.</li>
+      <li>Open the <a href="https://www.jetbrains.com/pycharm/download/">PyCharm download page</a>.</li>
+      <li>Download and run the Windows installer.</li>
+      <li>You can keep the default settings. Enable <strong>Open Folder as Project</strong> to open projects from File Explorer.</li>
+      <li>Complete the installation.</li>
     </ol>
-    <p>PyCharm jest obecnie jednym produktem z bezpłatnymi podstawowymi funkcjami. Do tego projektu nie potrzebujesz płatnej subskrypcji. Po okresie próbnym Pro możesz nadal korzystać z funkcji bezpłatnych. <a href="https://www.jetbrains.com/help/pycharm/installation-guide.html">Dokumentacja instalacji</a>.</p>
+    <p>PyCharm is available as a unified product with free core features. This project does not require a paid subscription. You can continue using the free features after the Pro trial ends. See the <a href="https://www.jetbrains.com/help/pycharm/installation-guide.html">installation documentation</a>.</p>
   </section>
   <section id="python">
-    <h2>2. Zainstaluj Pythona 3.12</h2>
-    <p>Projekt wymaga Pythona <strong>3.10–3.12</strong>. Dla tej instrukcji wybierz <strong>Python 3.12, 64-bit</strong>.</p>
+    <h2>2. Install Python 3.12</h2>
+    <p>The project requires <strong>Python 3.10–3.12</strong>. Use <strong>64-bit Python 3.12</strong> for this guide.</p>
     <ol>
-      <li>Otwórz <a href="https://www.python.org/downloads/release/python-31210/">stronę Pythona 3.12.10</a>.</li>
-      <li>W sekcji <strong>Files</strong> pobierz <strong>Windows installer (64-bit)</strong>.</li>
-      <li>Uruchom instalator i zaznacz <strong>Add python.exe to PATH</strong>.</li>
-      <li>Wybierz <strong>Install Now</strong>.</li>
-      <li>Otwórz PowerShell i sprawdź instalację:</li>
+      <li>Open the <a href="https://www.python.org/downloads/release/python-31210/">Python 3.12.10 release page</a>.</li>
+      <li>Under <strong>Files</strong>, download <strong>Windows installer (64-bit)</strong>.</li>
+      <li>Run the installer and select <strong>Add python.exe to PATH</strong>.</li>
+      <li>Select <strong>Install Now</strong>.</li>
+      <li>Open PowerShell and check the installation:</li>
     </ol>
     <div class="command"><pre><code>py -3.12 --version</code></pre></div>
-    <p>Oczekiwany wynik: <code>Python 3.12.x</code>.</p>
-    <div class="note">Aktualna konfiguracja projektu nie obsługuje Pythona 3.13 ani nowszego. Wybierz wersję 3.12 również podczas konfiguracji PyCharma.</div>
+    <p>Expected output: <code>Python 3.12.x</code>.</p>
+    <div class="note">The current project configuration does not support Python 3.13 or later. Select Python 3.12 when configuring PyCharm as well.</div>
   </section>
   <section id="git">
-    <h2>3. Zainstaluj Git</h2>
+    <h2>3. Install Git</h2>
     <ol>
-      <li>Pobierz instalator z <a href="https://git-scm.com/install/windows">oficjalnej strony Git dla Windows</a>.</li>
-      <li>Zainstaluj go z ustawieniami domyślnymi.</li>
-      <li>Otwórz nowe okno PowerShell i sprawdź:</li>
+      <li>Download the installer from the <a href="https://git-scm.com/install/windows">official Git for Windows page</a>.</li>
+      <li>Install it with the default settings.</li>
+      <li>Open a new PowerShell window and check:</li>
     </ol>
     <div class="command"><pre><code>git --version</code></pre></div>
-    <p>Jeżeli PyCharm był otwarty podczas instalacji Gita, uruchom go ponownie.</p>
+    <p>If PyCharm was open while you installed Git, restart PyCharm.</p>
   </section>
   <section id="clone">
-    <h2>4. Pobierz repozytorium w PyCharmie</h2>
+    <h2>4. Clone the repository in PyCharm</h2>
     <ol>
-      <li>Na ekranie powitalnym wybierz <strong>Clone Repository</strong> lub <strong>Get from VCS</strong>. Jeżeli masz otwarty projekt, poszukaj <strong>Git → Clone</strong>.</li>
-      <li>W polu <strong>URL</strong> wklej poniższy adres.</li>
+      <li>On the welcome screen, select <strong>Clone Repository</strong> or <strong>Get from VCS</strong>. If a project is already open, look for <strong>Git → Clone</strong>.</li>
+      <li>Paste the following address into the <strong>URL</strong> field:</li>
     </ol>
     <div class="command"><pre><code>https://github.com/gkazanowski/posture-line.git</code></pre></div>
-    <p>W polu <strong>Directory</strong> wybierz folder na swoim komputerze, np. poniższy. Zastąp <code>TWOJ_LOGIN</code> swoją nazwą użytkownika Windows.</p>
-    <div class="command"><pre><code>C:\Users\TWOJ_LOGIN\PycharmProjects\posture-line</code></pre></div>
-    <p>Kliknij <strong>Clone</strong>, otwórz projekt i wybierz <strong>Trust Project</strong>, jeśli pojawi się pytanie o zaufanie do projektu.</p>
-    <p>Repozytorium jest publiczne, więc samo pobranie nie wymaga logowania do GitHuba. Nazwy przycisków mogą różnić się między wersjami PyCharma. <a href="https://www.jetbrains.com/help/pycharm/set-up-a-git-repository.html">Instrukcja klonowania</a>.</p>
+    <p>In <strong>Directory</strong>, select a local folder, for example the path below. Replace <code>YOUR_USERNAME</code> with your Windows username.</p>
+    <div class="command"><pre><code>C:\Users\YOUR_USERNAME\PycharmProjects\posture-line</code></pre></div>
+    <p>Click <strong>Clone</strong>, open the project, and select <strong>Trust Project</strong> if prompted.</p>
+    <p>The repository is public, so cloning does not require a GitHub login. Button names may differ between PyCharm versions. See the <a href="https://www.jetbrains.com/help/pycharm/set-up-a-git-repository.html">cloning instructions</a>.</p>
   </section>
   <section id="environment">
-    <h2>5. Utwórz środowisko i zainstaluj biblioteki</h2>
-    <p>W PyCharmie otwórz zakładkę <strong>Terminal</strong> i użyj PowerShella. Upewnij się, że jesteś w folderze <code>posture-line</code>: polecenie <code>dir</code> powinno pokazać plik <code>pyproject.toml</code>.</p>
-    <p>Utwórz osobne środowisko Pythona dla projektu:</p>
+    <h2>5. Create the environment and install dependencies</h2>
+    <p>Open the <strong>Terminal</strong> tab in PyCharm and use PowerShell. Make sure you are in the <code>posture-line</code> directory: <code>dir</code> should list <code>pyproject.toml</code>.</p>
+    <p>Create a dedicated Python environment for the project:</p>
     <div class="command"><pre><code>py -3.12 -m venv .venv</code></pre></div>
-    <p>Następnie zainstaluj aplikację i jej zależności:</p>
+    <p>Then install the application and its dependencies:</p>
     <div class="command"><pre><code>.\.venv\Scripts\python.exe -m pip install -c requirements-lock.txt -e .</code></pre></div>
-    <div class="note">Końcowa kropka jest częścią polecenia. Jeśli PyCharm wcześniej utworzył już <code>.venv</code> z Pythonem 3.12, pomiń tworzenie środowiska i wykonaj tylko instalację bibliotek. Folder <code>.venv</code> nie jest pobierany z GitHuba — każdy tworzy go lokalnie.</div>
+    <div class="note">The final dot is part of the command. If PyCharm has already created a Python 3.12 environment in <code>.venv</code>, skip environment creation and install the dependencies. The <code>.venv</code> directory is not downloaded from GitHub; each contributor creates it locally.</div>
   </section>
   <section id="interpreter">
-    <h2>6. Dodaj interpreter do PyCharma</h2>
+    <h2>6. Add the interpreter to PyCharm</h2>
     <ol>
-      <li>Naciśnij <strong>Ctrl+Alt+S</strong> i wyszukaj <strong>Python Interpreter</strong>. W nowszych wersjach znajdziesz go pod <strong>Python → Interpreter</strong>.</li>
-      <li>Wybierz <strong>Add Interpreter → Add Local Interpreter</strong>.</li>
-      <li>Wybierz istniejące środowisko: <strong>Existing environment</strong> lub typ <strong>Python</strong>, zależnie od wersji.</li>
-      <li>Kliknij ikonę przeglądania <strong>…</strong> lub folderu i wskaż plik poniżej, we własnym katalogu projektu.</li>
+      <li>Press <strong>Ctrl+Alt+S</strong> and search for <strong>Python Interpreter</strong>. In newer versions, it is under <strong>Python → Interpreter</strong>.</li>
+      <li>Select <strong>Add Interpreter → Add Local Interpreter</strong>.</li>
+      <li>Select an existing environment: <strong>Existing environment</strong> or the <strong>Python</strong> type, depending on your version.</li>
+      <li>Click the browse button <strong>…</strong> or folder icon and locate this file in your project directory:</li>
     </ol>
-    <div class="command"><pre><code>FOLDER_TWOJEGO_PROJEKTU\.venv\Scripts\python.exe</code></pre></div>
-    <p>Zatwierdź przez <strong>OK / Apply</strong>. W tej ścieżce <code>FOLDER_TWOJEGO_PROJEKTU</code> oznacza pełną ścieżkę do sklonowanego katalogu <code>posture-line</code>.</p>
-    <div class="note">Jeśli właściwego interpretera nie ma na liście, dodaj go przez przeglądanie plików. Interpreter ze starszego projektu, np. <code>PyCharmMiscProject</code>, może nie mieć zainstalowanej naszej aplikacji.</div>
-    <p><a href="https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html">Dokumentacja konfiguracji interpretera</a>.</p>
+    <div class="command"><pre><code>YOUR_PROJECT_FOLDER\.venv\Scripts\python.exe</code></pre></div>
+    <p>Confirm with <strong>OK / Apply</strong>. Replace <code>YOUR_PROJECT_FOLDER</code> with the full path to your cloned <code>posture-line</code> directory.</p>
+    <div class="note">If the interpreter is missing from the list, add it by browsing for the executable. An interpreter from an older project, such as <code>PyCharmMiscProject</code>, may not have this application installed.</div>
+    <p>See the <a href="https://www.jetbrains.com/help/pycharm/configuring-python-interpreter.html">interpreter configuration documentation</a>.</p>
   </section>
   <section id="run">
-    <h2>7. Uruchom aplikację</h2>
-    <p>W górnym pasku PyCharma wybierz konfigurację <strong>Posture Line</strong> i kliknij zielony przycisk <strong>Run</strong>.</p>
-    <p>Jeśli konfiguracji nie ma, otwórz <strong>Run → Edit Configurations… → + → Python</strong> i ustaw:</p>
+    <h2>7. Run the application</h2>
+    <p>Select the <strong>Posture Line</strong> configuration in the PyCharm toolbar and click the green <strong>Run</strong> button.</p>
+    <p>If the configuration is missing, open <strong>Run → Edit Configurations… → + → Python</strong> and set:</p>
     <div class="table-wrap"><table>
-      <thead><tr><th scope="col">Pole</th><th scope="col">Wartość</th></tr></thead>
+      <thead><tr><th scope="col">Field</th><th scope="col">Value</th></tr></thead>
       <tbody>
         <tr><td>Name</td><td><code>Posture Line</code></td></tr>
         <tr><td>Run / Module name</td><td><code>posture_line</code></td></tr>
-        <tr><td>Python interpreter</td><td>Interpreter z projektowego <code>.venv</code></td></tr>
-        <tr><td>Working directory</td><td>Pełna ścieżka do folderu <code>posture-line</code> na Twoim komputerze</td></tr>
+        <tr><td>Python interpreter</td><td>The interpreter from the project's <code>.venv</code></td></tr>
+        <tr><td>Working directory</td><td>The full path to your local <code>posture-line</code> directory</td></tr>
       </tbody>
     </table></div>
-    <p>Wybierz uruchamianie <strong>modułu</strong>, nie pliku. Wpisz dokładnie <code>posture_line</code>, bez dodatkowych spacji i ukośników. Nie uruchamiaj <code>main.py</code> — to przykładowy plik PyCharma.</p>
-    <p>Alternatywnie uruchom aplikację z terminala projektu:</p>
+    <p>Select <strong>module</strong> execution and enter exactly <code>posture_line</code>, without extra spaces or slashes. Do not run <code>main.py</code>; it is a PyCharm sample file.</p>
+    <p>Alternatively, run the application from the project terminal:</p>
     <div class="command"><pre><code>.\.venv\Scripts\python.exe -m posture_line</code></pre></div>
-    <p>W oknie aplikacji kliknij <strong>Start camera</strong>. Przy pierwszym uruchomieniu zostanie pobrany model, więc potrzebny jest internet. Jeśli kamera jest zajęta, zamknij inne aplikacje korzystające z niej.</p>
+    <p>Click <strong>Start camera</strong> in the application. The first run downloads the model and requires internet access. If the camera is busy, close other applications using it.</p>
   </section>
   <section id="tests">
-    <h2>8. Sprawdź testy</h2>
-    <p>W terminalu projektu uruchom:</p>
+    <h2>8. Run the tests</h2>
+    <p>Run this command in the project terminal:</p>
     <div class="command"><pre><code>.\.venv\Scripts\python.exe -m unittest discover -s tests -v</code></pre></div>
-    <p>Wersja bazowa opisana w tej instrukcji zawiera <strong>9 testów</strong>. Poprawny wynik kończy się komunikatem <code>OK</code>. W kolejnych wersjach liczba testów może wzrosnąć.</p>
+    <p>The baseline version described in this guide includes <strong>9 tests</strong>. A successful run ends with <code>OK</code>. Later versions may include more tests.</p>
   </section>
   <section id="contribute">
-    <h2>9. Rozpocznij pracę nad zmianami</h2>
-    <p>Ustaw autora commitów dla tego repozytorium. Zastąp przykładowe dane własnymi:</p>
+    <h2>9. Start contributing</h2>
+    <p>Configure the commit author for this repository. Replace the example values with your own details:</p>
     <div class="command"><pre><code>git config user.name "Your Name"
 git config user.email "your-email@example.com"</code></pre></div>
-    <p>Przed rozpoczęciem nowej pracy, przy czystym katalogu roboczym, pobierz aktualizacje i utwórz własną gałąź:</p>
+    <p>Before starting new work, with a clean working tree, download updates and create your own branch:</p>
     <div class="command"><pre><code>git switch main
 git pull --ff-only
 git switch -c feature/my-first-change</code></pre></div>
-    <p>Wprowadź zmiany, uruchom testy z kroku 8, a następnie przygotuj commit i wyślij gałąź:</p>
+    <p>Make your changes, run the tests from step 8, then create a commit and push your branch:</p>
     <div class="command"><pre><code>git status
 git add src tests
 git commit -m "Improve posture visualization"
 git push -u origin feature/my-first-change</code></pre></div>
-    <p><code>git add src tests</code> dodaje zmiany z tych dwóch katalogów. Inne zmienione pliki, np. <code>README.md</code>, dodaj osobno. Dopasuj nazwę gałęzi i opis commita do swojej zmiany.</p>
-    <div class="note">Kod, nazwy plików i gałęzi, komunikaty commitów, komentarze oraz dokumentację projektu prowadzimy <strong>po angielsku</strong>. Ta instrukcja po polsku służy wdrożeniu użytkownika i jest osobnym materiałem.</div>
-    <p>Do wysyłania zmian bezpośrednio do <code>gkazanowski/posture-line</code> potrzebujesz uprawnień współpracownika i logowania do GitHuba. Po wysłaniu gałęzi utwórz na GitHubie <strong>Pull Request</strong> do <code>main</code>.</p>
-    <p>Osoba bez dostępu do zapisu może utworzyć na GitHubie <strong>fork</strong>, sklonować adres własnego forka zamiast adresu z kroku 4 i wysyłać gałęzie do niego. Następnie zgłasza Pull Request z forka do <code>gkazanowski/posture-line</code>.</p>
+    <p><code>git add src tests</code> stages changes in those two directories. Stage other changed files, such as <code>README.md</code>, separately. Choose a branch name and commit message that describe your change.</p>
+    <div class="note">All project content must be in <strong>English</strong>, including code, file and branch names, commit messages, comments, UI text, and documentation. This includes onboarding guides and downloadable materials.</div>
+    <p>To push directly to <code>gkazanowski/posture-line</code>, you need collaborator access and GitHub authentication. After pushing your branch, open a <strong>Pull Request</strong> targeting <code>main</code>.</p>
+    <p>Without write access, create a <strong>fork</strong> on GitHub, clone your fork's address instead of the address in step 4, and push branches to your fork. Then open a Pull Request from your fork to <code>gkazanowski/posture-line</code>.</p>
   </section>
   <footer>
-    Instrukcja przygotowana 20 września 2026 r. dla Windows i wersji bazowej projektu
+    Prepared on September 20, 2026, for Windows and project baseline
     <a href="https://github.com/gkazanowski/posture-line/commit/15b02e7da67ad88fac8edcc2fdedd6f92a34a505">15b02e7</a>.
-    Plik działa lokalnie bez zewnętrznych bibliotek. Internet jest potrzebny do otwierania odnośników, pobierania narzędzi, bibliotek i modelu.
+    This file works locally without external libraries. Internet access is required to open links and download tools, dependencies, and the model.
   </footer>
 </main>
+
 <script>
   document.getElementById('print-guide').addEventListener('click', () => window.print());
   document.querySelectorAll('.command').forEach((container) => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'copy';
-    button.textContent = 'Kopiuj';
-    button.setAttribute('aria-label', 'Kopiuj zawartość tego bloku');
+    button.textContent = 'Copy';
+    button.setAttribute('aria-label', 'Copy the contents of this block');
     button.addEventListener('click', async () => {
       const code = container.querySelector('code');
       const status = document.getElementById('copy-status');
       try {
         if (!navigator.clipboard) throw new Error('Clipboard unavailable');
         await navigator.clipboard.writeText(code.textContent);
-        button.textContent = 'Skopiowano';
-        status.textContent = 'Skopiowano zawartość bloku do schowka.';
-        setTimeout(() => { button.textContent = 'Kopiuj'; }, 1800);
+        button.textContent = 'Copied';
+        status.textContent = 'Block contents copied to the clipboard.';
+        setTimeout(() => { button.textContent = 'Copy'; }, 1800);
       } catch (error) {
         const selection = window.getSelection();
         const range = document.createRange();
         range.selectNodeContents(code);
         selection.removeAllRanges();
         selection.addRange(range);
-        status.textContent = 'Tekst zaznaczony. Naciśnij Ctrl+C, aby go skopiować.';
+        status.textContent = 'Text selected. Press Ctrl+C to copy it.';
       }
     });
     container.appendChild(button);
